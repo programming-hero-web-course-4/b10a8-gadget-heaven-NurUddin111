@@ -1,0 +1,173 @@
+[
+    {
+      "product_id": "P001",
+      "product_title": "Galaxy S24 Ultra",
+      "product_image": "https://i.ibb.co.com/WnrsSGL/samsung-galaxy-s24.jpg",
+      "category": "Android",
+      "price": 1199,
+      "description": "The Samsung Galaxy S24 Ultra offers top-notch performance with a sleek design.",
+      "Specification": [
+        "6.8-inch AMOLED Display",
+        "Snapdragon 8 Gen 2 Processor",
+        "12GB RAM",
+        "5000mAh Battery",
+        "108MP Camera"
+      ],
+      "availability": true,
+      "rating": 4.8
+    },
+    {
+      "product_id": "P002",
+      "product_title": "MacBook Pro 16",
+      "product_image": "https://i.ibb.co.com/YLvWP0p/macbook-pro.jpg",
+      "category": "Macbook",
+      "price": 2499,
+      "description": "The MacBook Pro 16 delivers extraordinary performance with its M2 Max chip.",
+      "Specification": [
+        "16-inch Retina Display",
+        "M2 Max Chip",
+        "32GB RAM",
+        "1TB SSD",
+        "100Wh Battery"
+      ],
+      "availability": true,
+      "rating": 4.9
+    },
+    {
+      "product_id": "P003",
+      "product_title": "iPhone 15",
+      "product_image": "https://i.ibb.co.com/ZY7C3bs/i-Phone-15.webp",
+      "category": "iPhone",
+      "price": 1099,
+      "description": "The iPhone 15 Pro redefines mobile photography and performance.",
+      "Specification": [
+        "6.1-inch Super Retina XDR Display",
+        "A17 Pro Chip",
+        "8GB RAM",
+        "128GB Storage",
+        "Triple Camera System"
+      ],
+      "availability": false,
+      "rating": 4.7
+    },
+    {
+      "product_id": "P004",
+      "product_title": "Motorella 8",
+      "product_image": "https://i.ibb.co.com/x5XP9WX/motorella.jpg",
+      "category": "Android",
+      "price": 1099,
+      "description": "The Motorella 8 Pro redefines mobile photography and performance.",
+      "Specification": [
+        "6.1-inch Super Retina XDR Display",
+        "A17 Pro Chip",
+        "8GB RAM",
+        "128GB Storage",
+        "Triple Camera System"
+      ],
+      "availability": false,
+      "rating": 4.7
+    },
+    {
+      "product_id": "P005",
+      "product_title": "Oppo Reno 8",
+      "product_image": "https://i.ibb.co.com/6vb5s1z/oppo-reno8-jpg.webp",
+      "category": "Android",
+      "price": 999,
+      "description": "The Oppo Reno 8 offers exceptional AI features and a stunning camera.",
+      "Specification": [
+        "6.7-inch LTPO OLED Display",
+        "Tensor G3 Processor",
+        "12GB RAM",
+        "5000mAh Battery",
+        "50MP + 48MP Dual Camera"
+      ],
+      "availability": true,
+      "rating": 4.5
+    },
+    {
+      "product_id": "P006",
+      "product_title": "M4 Macbook",
+      "product_image": "https://i.ibb.co.com/0BbYh4k/M4-Mac-Book-Pro-Thumb-2.jpg",
+      "category": "Macbook",
+      "price": 1599.99,
+      "description": "The HP Spectre x360 is a versatile laptop with stunning design and performance.",
+      "Specification": [
+        "13.5-inch OLED Display",
+        "Intel Core i7-1260P",
+        "16GB RAM",
+        "1TB SSD",
+        "Convertible Design"
+      ],
+      "availability": true,
+      "rating": 4.7
+    },
+    {
+      "product_id": "P007",
+      "product_title": "Xiaomi 15 Pro",
+      "product_image": "https://i.ibb.co.com/3s70n5X/Xiaomi-15-Pro-8.webp",
+      "category": "Android",
+      "price": 799.99,
+      "description": "The Xiaomi 15 Pro delivers flagship performance at a competitive price.",
+      "Specification": [
+        "6.7-inch AMOLED Display",
+        "Snapdragon 8 Gen 2",
+        "16GB RAM",
+        "5000mAh Battery",
+        "50MP Triple Camera"
+      ],
+      "availability": true,
+      "rating": 4.4
+    },
+    {
+      "product_id": "P008",
+      "product_title": "Camon 30",
+      "product_image": "https://i.ibb.co.com/VVS0q6q/camon-30.webp",
+      "category": "Android",
+      "price": 799,
+      "description": "The Xiaomi 15 Pro delivers flagship performance at a competitive price.",
+      "Specification": [
+        "6.7-inch AMOLED Display",
+        "Snapdragon 8 Gen 2",
+        "16GB RAM",
+        "5000mAh Battery",
+        "50MP Triple Camera"
+      ],
+      "availability": true,
+      "rating": 4.4
+    },
+    {
+      "product_id": "P009",
+      "product_title": "Vivo V23",
+      "product_image": "https://i.ibb.co.com/6r7nPMy/vivo-v23pro.webp",
+      "category": "Android",
+      "price": 799,
+      "description": "The Vivo V23 delivers flagship performance at a competitive price.",
+      "Specification": [
+        "6.7-inch AMOLED Display",
+        "Snapdragon 8 Gen 2",
+        "16GB RAM",
+        "5000mAh Battery",
+        "50MP Triple Camera"
+      ],
+      "availability": true,
+      "rating": 4.4
+    },{
+        "product_id": "P010",
+        "product_title": "iPhone 16",
+        "product_image": "https://i.ibb.co.com/XZXC35R/Apple-i-Phone-16.jpg",
+        "category": "iPhone",
+        "price": 1299,
+        "description": "The iPhone 16 Pro redefines mobile photography and performance.",
+        "Specification": [
+          "6.1-inch Super Retina XDR Display",
+          "A17 Pro Chip",
+          "8GB RAM",
+          "128GB Storage",
+          "Triple Camera System"
+        ],
+        "availability": false,
+        "rating": 4.7
+      }
+    
+  ]
+  
