@@ -1,9 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { FaCartArrowDown, FaHeart } from "react-icons/fa";
 
 const Header = () => {
+
   return (
+    
     <div>
       {/* Nav With Few Details */}
 
