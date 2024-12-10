@@ -14,7 +14,7 @@ const Banner = () => {
             have it all!
           </p>
           <div className="flex justify-center">
-            <button className="bg-white rounded-full px-5 py-2 flex items-center justify-center text-xl font-semibold">
+            <button className="bg-white rounded-full px-5 py-2 flex items-center justify-center text-xl font-semibold text-[#9538E2]">
               Shop Now
             </button>
           </div>

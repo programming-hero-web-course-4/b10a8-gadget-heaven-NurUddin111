@@ -1,10 +1,8 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FaCartArrowDown, FaHeart } from "react-icons/fa";
 
 const Header = () => {
-
   return (
-    
     <div>
       {/* Nav With Few Details */}
 
@@ -13,13 +11,13 @@ const Header = () => {
           <h1 className="text-2xl text-white font-bold">Gadget Heaven</h1>
           <ul className="flex gap-10 text-white text-lg font-semibold">
             <li>
-              <Link to="/">Home</Link>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <Link to="/statistics">Statistics</Link>
+              <NavLink to="/statistics">Statistics</NavLink>
             </li>
             <li>
-              <Link to="/dash-board">Dashboard</Link>
+              <NavLink to="/dash-board">Dashboard</NavLink>
             </li>
           </ul>
           <div className="flex gap-5 items-center justify-center">
