@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SelectedProductsContext } from "../SelectedProducts/SelectedProducts";
 
 const SelectedProduct = ({ product }) => {
-  const { product_image, product_title, price, description } = product;
+  const { product_id, product_image, product_title, price, description } =
+    product;
+  const { productsQuantity } = useContext(SelectedProductsContext);
+
+  console.log(productsQuantity);
   return (
     <div>
       <div className="flex justify-between items-center p-5 rounded-lg border-2 border-slate-300">
@@ -10,10 +15,13 @@ const SelectedProduct = ({ product }) => {
           <div className="space-y-2">
             <h1 className="text-2xl font-bold">{product_title}</h1>
             <p className="text-lg">{description}</p>
-            <p className="text-lg">
-              Price: {price} USD
-            </p>
+            <p className="text-lg">Price: {price} USD</p>
           </div>
+        </div>
+        <div>
+          <h1 className="text-2xl font-bold">
+            Quantity: {productsQuantity[product_id]}
+          </h1>
         </div>
         <div>
           <div className="flex justify-center">

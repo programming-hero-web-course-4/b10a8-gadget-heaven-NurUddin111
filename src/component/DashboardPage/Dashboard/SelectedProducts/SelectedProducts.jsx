@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import SelectedProduct from "../SelectedProduct/SelectedProduct";
+
+export const SelectedProductsContext = createContext();
 
 const SelectedProducts = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -11,17 +13,44 @@ const SelectedProducts = () => {
   }, []);
 
   let storedProducts = JSON.parse(localStorage.getItem("cart"));
-  const productsArray = allProducts.filter((product) =>
-    storedProducts.includes(product.product_id)
+
+  const overviewCart = allProducts?.filter((product) =>
+    storedProducts?.includes(product.product_id)
   );
+
+  const allProductsInCart = storedProducts?.map((id) =>
+    allProducts.find((product) => product.product_id === id)
+  );
+
+  console.log(allProductsInCart);
+
+  const productsQuantity = {};
+
+  allProductsInCart?.forEach((device) => {
+    if (device && device.product_id) {
+      const id = device.product_id;
+      if (productsQuantity[id]) {
+        productsQuantity[id]++;
+      } else {
+        productsQuantity[id] = 1;
+      }
+    }
+  });
+
+  console.log(productsQuantity);
 
   let totalPrice = 0;
-  productsArray.forEach((product) => (totalPrice += product.price));
 
-  const productsPriceAscendingOrder = [...productsArray].sort(
+  allProductsInCart?.forEach((product) => {
+    if (product) {
+      totalPrice += product.price;
+    }
+  });
+
+  const productsPriceAscendingOrder = [...overviewCart].sort(
     (a, b) => a.price - b.price
   );
-  const productsPriceDescendingOrder = [...productsArray].sort(
+  const productsPriceDescendingOrder = [...overviewCart].sort(
     (a, b) => b.price - a.price
   );
 
@@ -77,30 +106,32 @@ const SelectedProducts = () => {
           </div>
         </div>
         <div className="flex flex-col gap-5">
-          {generalOrder
-            ? productsArray.map((product) => (
-                <SelectedProduct
-                  key={product.product_id}
-                  product={product}
-                ></SelectedProduct>
-              ))
-            : null}
-          {ascendingOrder
-            ? productsPriceAscendingOrder.map((product) => (
-                <SelectedProduct
-                  key={product.product_id}
-                  product={product}
-                ></SelectedProduct>
-              ))
-            : null}
-          {descendingOrder
-            ? productsPriceDescendingOrder.map((product) => (
-                <SelectedProduct
-                  key={product.product_id}
-                  product={product}
-                ></SelectedProduct>
-              ))
-            : null}
+          <SelectedProductsContext.Provider value={{productsQuantity}}>
+            {generalOrder
+              ? overviewCart?.map((product) => (
+                  <SelectedProduct
+                    key={product.product_id}
+                    product={product}
+                  ></SelectedProduct>
+                ))
+              : null}
+            {ascendingOrder
+              ? productsPriceAscendingOrder?.map((product) => (
+                  <SelectedProduct
+                    key={product.product_id}
+                    product={product}
+                  ></SelectedProduct>
+                ))
+              : null}
+            {descendingOrder
+              ? productsPriceDescendingOrder?.map((product) => (
+                  <SelectedProduct
+                    key={product.product_id}
+                    product={product}
+                  ></SelectedProduct>
+                ))
+              : null}
+          </SelectedProductsContext.Provider>
         </div>
       </div>
     </div>

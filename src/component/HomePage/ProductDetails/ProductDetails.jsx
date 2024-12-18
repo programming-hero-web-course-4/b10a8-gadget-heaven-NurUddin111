@@ -9,15 +9,9 @@ const ProductDetails = () => {
   const addToCart = (id) => {
     let storedProducts = JSON.parse(localStorage.getItem("cart"));
     if (storedProducts) {
-      if (storedProducts.includes(id)) {
-        toast.warn(
-          "Sorry! Sorry! This Product Has Already Been Added To Your Cart"
-        );
-      } else {
-        storedProducts.push(id);
-        localStorage.setItem("cart", JSON.stringify(storedProducts));
-        toast.success("Successfully Added To Your Cart!");
-      }
+      storedProducts.push(id);
+      localStorage.setItem("cart", JSON.stringify(storedProducts));
+      toast.success("Successfully Added To Your Cart!");
     } else {
       storedProducts = [];
       storedProducts.push(id);
