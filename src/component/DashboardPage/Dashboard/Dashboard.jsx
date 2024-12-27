@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SelectedProducts from "./SelectedProducts/SelectedProducts";
+import WishlistedProducts from "./WishlistedProducts/WishlistedProducts";
 
 const Dashboard = () => {
   const [cart, setCart] = useState(true);
@@ -53,6 +54,7 @@ const Dashboard = () => {
         </div>
       </div>
       {cart ? <SelectedProducts></SelectedProducts> : null}
+      {wishlist ? <WishlistedProducts></WishlistedProducts> : null}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import SelectedProduct from "../SelectedProduct/SelectedProduct";
+import { toast } from "react-toastify";
 
 export const SelectedProductsContext = createContext();
 
@@ -12,17 +13,26 @@ const SelectedProducts = () => {
       .then((data) => setAllProducts(data));
   }, []);
 
-  let storedProducts = JSON.parse(localStorage.getItem("cart"));
+  const [storedProductsId, setStoredProductsId] = useState(
+    JSON.parse(localStorage.getItem("cart"))
+  );
+
+  const removeFromCart = (id) => {
+    let updatedStoredProductsId = storedProductsId.filter(
+      (product_id) => product_id !== id
+    );
+    localStorage.setItem("cart", JSON.stringify(updatedStoredProductsId));
+    setStoredProductsId(updatedStoredProductsId);
+    toast.error("Removed item successfully from cart!");
+  };
 
   const overviewCart = allProducts?.filter((product) =>
-    storedProducts?.includes(product.product_id)
+    storedProductsId?.includes(product.product_id)
   );
 
-  const allProductsInCart = storedProducts?.map((id) =>
+  const allProductsInCart = storedProductsId?.map((id) =>
     allProducts.find((product) => product.product_id === id)
   );
-
-  console.log(allProductsInCart);
 
   const productsQuantity = {};
 
@@ -36,8 +46,6 @@ const SelectedProducts = () => {
       }
     }
   });
-
-  console.log(productsQuantity);
 
   let totalPrice = 0;
 
@@ -106,7 +114,9 @@ const SelectedProducts = () => {
           </div>
         </div>
         <div className="flex flex-col gap-5">
-          <SelectedProductsContext.Provider value={{productsQuantity}}>
+          <SelectedProductsContext.Provider
+            value={{ productsQuantity, removeFromCart }}
+          >
             {generalOrder
               ? overviewCart?.map((product) => (
                   <SelectedProduct

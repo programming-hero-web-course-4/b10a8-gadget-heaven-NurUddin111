@@ -16,6 +16,7 @@ const ProductDetails = () => {
       storedProducts = [];
       storedProducts.push(id);
       localStorage.setItem("cart", JSON.stringify(storedProducts));
+      toast.success("Successfully Added To Your Cart!");
     }
   };
 
@@ -28,13 +29,14 @@ const ProductDetails = () => {
         );
       } else {
         storedProducts.push(id);
-        localStorage.setItem("cart", JSON.stringify(storedProducts));
-        toast.success("Successfully Added To Your Cart!");
+        localStorage.setItem("wishlist", JSON.stringify(storedProducts));
+        toast.success("Successfully Added To Your Wishlist!");
       }
     } else {
       storedProducts = [];
       storedProducts.push(id);
       localStorage.setItem("wishlist", JSON.stringify(storedProducts));
+      toast.success("Successfully Added To Your Wishlist!");
     }
   };
 
