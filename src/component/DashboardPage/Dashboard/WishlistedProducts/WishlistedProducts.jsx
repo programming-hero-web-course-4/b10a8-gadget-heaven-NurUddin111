@@ -27,6 +27,29 @@ const WishlistedProducts = () => {
     toast.error("Removed item successfully from Wishlist!");
   };
 
+  const addToCartFromWishlist = (id) => {
+    let storedProducts = JSON.parse(localStorage.getItem("cart"));
+    if (storedProducts) {
+      storedProducts.push(id);
+      localStorage.setItem("cart", JSON.stringify(storedProducts));
+      toast.success("Successfully Added To Your Cart!");
+    } else {
+      storedProducts = [];
+      storedProducts.push(id);
+      localStorage.setItem("cart", JSON.stringify(storedProducts));
+      toast.success("Successfully Added To Your Cart!");
+    }
+    let updatedWishlistedProductsId = wishlistedProductsId.filter(
+      (product_id) => product_id !== id
+    );
+    localStorage.setItem(
+      "wishlist",
+      JSON.stringify(updatedWishlistedProductsId)
+    );
+    setWishlistedProductsId(updatedWishlistedProductsId);
+    // toast.error("Removed item successfully from Wishlist!");
+  };
+
   const overviewWishlist = allProducts?.filter((product) =>
     wishlistedProductsId?.includes(product.product_id)
   );
@@ -43,6 +66,7 @@ const WishlistedProducts = () => {
               key={product.product_id}
               product={product}
               removeFromWishlist={removeFromWishlist}
+              addToCartFromWishlist={addToCartFromWishlist}
             ></WishlistedProduct>
           ))}
         </div>

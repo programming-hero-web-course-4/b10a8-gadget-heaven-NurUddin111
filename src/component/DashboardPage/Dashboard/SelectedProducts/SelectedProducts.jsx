@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import SelectedProduct from "../SelectedProduct/SelectedProduct";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const SelectedProductsContext = createContext();
 
@@ -16,15 +17,6 @@ const SelectedProducts = () => {
   const [storedProductsId, setStoredProductsId] = useState(
     JSON.parse(localStorage.getItem("cart"))
   );
-
-  const removeFromCart = (id) => {
-    let updatedStoredProductsId = storedProductsId.filter(
-      (product_id) => product_id !== id
-    );
-    localStorage.setItem("cart", JSON.stringify(updatedStoredProductsId));
-    setStoredProductsId(updatedStoredProductsId);
-    toast.error("Removed item successfully from cart!");
-  };
 
   const overviewCart = allProducts?.filter((product) =>
     storedProductsId?.includes(product.product_id)
@@ -47,13 +39,20 @@ const SelectedProducts = () => {
     }
   });
 
-  let totalPrice = 0;
+  const totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
+
+  let updatedPrice = 0;
 
   allProductsInCart?.forEach((product) => {
     if (product) {
-      totalPrice += product.price;
+      updatedPrice += product.price;
     }
   });
+
+  localStorage.setItem("totalPrice", JSON.stringify(updatedPrice));
+
+
+  console.log(updatedPrice);
 
   const productsPriceAscendingOrder = [...overviewCart].sort(
     (a, b) => a.price - b.price
@@ -78,6 +77,28 @@ const SelectedProducts = () => {
     setAscendingOrder(false);
   };
 
+  const purchaseProduct = () => {
+    if (totalPrice > 0) {
+      localStorage.setItem("cart", JSON.stringify([]));
+      localStorage.setItem("totalPrice", JSON.stringify(0));
+      setStoredProductsId([]);
+      document.getElementById("purchase-completed-modal").showModal();
+    } else {
+      toast.warn("Kindly add at least one product in your cart to purchase!");
+    }
+  };
+
+  const removeFromCart = (id) => {
+    let updatedStoredProductsId = storedProductsId.filter(
+      (product_id) => product_id !== id
+    );
+    localStorage.setItem("cart", JSON.stringify(updatedStoredProductsId));
+    setStoredProductsId(updatedStoredProductsId);
+    toast.error("Removed item successfully from cart!");
+  };
+
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="space-y-10 mx-20">
@@ -93,7 +114,7 @@ const SelectedProducts = () => {
                   <li className="border border-[#8332C5] rounded-lg">
                     <details>
                       <summary>
-                        <button className=" text-[#9538E2]">
+                        <button className=" text-[#9538E2] text-lg">
                           Sort By Price
                         </button>
                       </summary>
@@ -109,7 +130,31 @@ const SelectedProducts = () => {
                   </li>
                 </ul>
               </div>
-              <div>Purchase</div>
+              <div className="border border-[#8332C5] rounded-lg px-3 py-[0.35rem]">
+                <button
+                  onClick={() => purchaseProduct()}
+                  className="text-[#9538E2] text-lg"
+                >
+                  Purchase
+                </button>
+              </div>
+              {/* Modal */}
+
+              <dialog id="purchase-completed-modal" className="modal">
+                <div className="modal-box">
+                  <h3 className="font-bold text-lg">Hello!</h3>
+                  <p className="py-4">
+                    Press ESC key or click the button below to close
+                  </p>
+                  <div className="modal-action">
+                    <form method="dialog">
+                      <button onClick={() => navigate("/")} className="btn">
+                        Close
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
             </div>
           </div>
         </div>

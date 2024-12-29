@@ -1,7 +1,13 @@
 import React from "react";
 import { MdDelete } from "react-icons/md";
+import { BsCart3 } from "react-icons/bs";
+import { toast } from "react-toastify";
 
-const WishlistedProduct = ({ product, removeFromWishlist }) => {
+const WishlistedProduct = ({
+  product,
+  removeFromWishlist,
+  addToCartFromWishlist,
+}) => {
   const { product_id, product_image, product_title, price, description } =
     product;
   return (
@@ -17,7 +23,15 @@ const WishlistedProduct = ({ product, removeFromWishlist }) => {
         </div>
 
         <div className="flex justify-end">
-          <div className="w-max rounded-xl">
+          <div className="w-max rounded-xl flex gap-5 items-center">
+            <button
+              onClick={() => {
+                addToCartFromWishlist(product_id);
+              }}
+              className="bg-white font-bold text-green-900 text-2xl flex rounded-lg"
+            >
+              <BsCart3 />
+            </button>
             <button
               onClick={() => removeFromWishlist(product_id)}
               className="bg-white font-bold text-red-900 text-2xl flex rounded-lg"

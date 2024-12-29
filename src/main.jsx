@@ -9,6 +9,7 @@ import ProductDetails from "./component/HomePage/ProductDetails/ProductDetails";
 import Dashboard from "./component/DashboardPage/Dashboard/Dashboard";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Statistics from "./component/StatisticsPage/Statistics/Statistics";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: "dash-board",
         element: <Dashboard></Dashboard>,
+      },
+      {
+        path: "statistics",
+        element: <Statistics></Statistics>,
       },
     ],
   },

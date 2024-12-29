@@ -6,16 +6,44 @@ import { CiHeart } from "react-icons/ci";
 import { toast } from "react-toastify";
 
 const ProductDetails = () => {
+  const { product_title } = useParams();
+
+  const originalName = product_title.replace(/-/g, " ");
+
+  const allProducts = useLoaderData();
+
+  const product = allProducts.find(
+    (product) => product.product_title === originalName
+  );
+
+  const {
+    product_id,
+    product_image,
+    price,
+    description,
+    Specification,
+    rating,
+  } = product;
+
+  let totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
+
   const addToCart = (id) => {
+    totalPrice += price;
     let storedProducts = JSON.parse(localStorage.getItem("cart"));
     if (storedProducts) {
-      storedProducts.push(id);
-      localStorage.setItem("cart", JSON.stringify(storedProducts));
-      toast.success("Successfully Added To Your Cart!");
+      if (totalPrice <= 1000) {
+        storedProducts.push(id);
+        localStorage.setItem("cart", JSON.stringify(storedProducts));
+        localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+        toast.success("Successfully Added To Your Cart!");
+      } else {
+        toast.warn("You can't add products in cart worth more than 5000 USD");
+      }
     } else {
       storedProducts = [];
       storedProducts.push(id);
       localStorage.setItem("cart", JSON.stringify(storedProducts));
+      localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
       toast.success("Successfully Added To Your Cart!");
     }
   };
@@ -39,25 +67,6 @@ const ProductDetails = () => {
       toast.success("Successfully Added To Your Wishlist!");
     }
   };
-
-  const { product_title } = useParams();
-
-  const originalName = product_title.replace(/-/g, " ");
-
-  const allProducts = useLoaderData();
-
-  const product = allProducts.find(
-    (product) => product.product_title === originalName
-  );
-
-  const {
-    product_id,
-    product_image,
-    price,
-    description,
-    Specification,
-    rating,
-  } = product;
 
   return (
     <div>

@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ErrorPage = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-gray-800">
       <h1 className="text-8xl font-extrabold text-blue-600">404</h1>
@@ -12,7 +14,7 @@ const ErrorPage = () => {
       </p>
       <button
         className="mt-6 px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none"
-        onClick={() => (window.location.href = "/")}
+        onClick={() => navigate("/")}
       >
         Go Back Home
       </button>
