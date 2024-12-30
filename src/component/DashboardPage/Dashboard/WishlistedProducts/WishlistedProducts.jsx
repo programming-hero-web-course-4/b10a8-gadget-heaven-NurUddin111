@@ -15,6 +15,47 @@ const WishlistedProducts = () => {
     JSON.parse(localStorage.getItem("wishlist"))
   );
 
+  let totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
+  console.log(totalPrice)
+
+  const addToCartFromWishlist = (id, price) => {
+    console.log(id,price)
+    totalPrice += price;
+    let storedProducts = JSON.parse(localStorage.getItem("cart"));
+    if (storedProducts) {
+      if (totalPrice < 1000) {
+        storedProducts.push(id);
+        localStorage.setItem("cart", JSON.stringify(storedProducts));
+        localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+        let updatedWishlistedProductsId = wishlistedProductsId.filter(
+          (product_id) => product_id !== id
+        );
+        localStorage.setItem(
+          "wishlist",
+          JSON.stringify(updatedWishlistedProductsId)
+        );
+        setWishlistedProductsId(updatedWishlistedProductsId);
+        toast.success("Successfully Added To Your Cart!");
+      } else {
+        toast.warn("You can't add products in cart worth more than 1000 USD");
+      }
+    } else {
+      storedProducts = [];
+      storedProducts.push(id);
+      localStorage.setItem("cart", JSON.stringify(storedProducts));
+      localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
+      let updatedWishlistedProductsId = wishlistedProductsId.filter(
+        (product_id) => product_id !== id
+      );
+      localStorage.setItem(
+        "wishlist",
+        JSON.stringify(updatedWishlistedProductsId)
+      );
+      setWishlistedProductsId(updatedWishlistedProductsId);
+      toast.success("Successfully Added To Your Cart!");
+    }
+  };
+
   const removeFromWishlist = (id) => {
     let updatedWishlistedProductsId = wishlistedProductsId.filter(
       (product_id) => product_id !== id
@@ -25,29 +66,6 @@ const WishlistedProducts = () => {
     );
     setWishlistedProductsId(updatedWishlistedProductsId);
     toast.error("Removed item successfully from Wishlist!");
-  };
-
-  const addToCartFromWishlist = (id) => {
-    let storedProducts = JSON.parse(localStorage.getItem("cart"));
-    if (storedProducts) {
-      storedProducts.push(id);
-      localStorage.setItem("cart", JSON.stringify(storedProducts));
-      toast.success("Successfully Added To Your Cart!");
-    } else {
-      storedProducts = [];
-      storedProducts.push(id);
-      localStorage.setItem("cart", JSON.stringify(storedProducts));
-      toast.success("Successfully Added To Your Cart!");
-    }
-    let updatedWishlistedProductsId = wishlistedProductsId.filter(
-      (product_id) => product_id !== id
-    );
-    localStorage.setItem(
-      "wishlist",
-      JSON.stringify(updatedWishlistedProductsId)
-    );
-    setWishlistedProductsId(updatedWishlistedProductsId);
-    // toast.error("Removed item successfully from Wishlist!");
   };
 
   const overviewWishlist = allProducts?.filter((product) =>

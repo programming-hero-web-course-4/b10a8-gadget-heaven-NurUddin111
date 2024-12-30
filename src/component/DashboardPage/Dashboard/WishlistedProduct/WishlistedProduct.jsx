@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { BsCart3 } from "react-icons/bs";
 import { toast } from "react-toastify";
@@ -10,6 +10,7 @@ const WishlistedProduct = ({
 }) => {
   const { product_id, product_image, product_title, price, description } =
     product;
+
   return (
     <div>
       <div className="grid grid-cols-2 items-center rounded-lg border-2 border-slate-300 py-5 px-10">
@@ -26,7 +27,7 @@ const WishlistedProduct = ({
           <div className="w-max rounded-xl flex gap-5 items-center">
             <button
               onClick={() => {
-                addToCartFromWishlist(product_id);
+                addToCartFromWishlist(product_id, price);
               }}
               className="bg-white font-bold text-green-900 text-2xl flex rounded-lg"
             >
