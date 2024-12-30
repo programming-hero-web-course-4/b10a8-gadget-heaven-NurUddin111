@@ -39,20 +39,14 @@ const SelectedProducts = () => {
     }
   });
 
-  const totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
-
   let updatedPrice = 0;
 
   allProductsInCart?.forEach((product) => {
     if (product) {
       updatedPrice += product.price;
+      localStorage.setItem("totalPrice", JSON.stringify(updatedPrice));
     }
   });
-
-  localStorage.setItem("totalPrice", JSON.stringify(updatedPrice));
-
-
-  console.log(updatedPrice);
 
   const productsPriceAscendingOrder = [...overviewCart].sort(
     (a, b) => a.price - b.price
@@ -78,7 +72,7 @@ const SelectedProducts = () => {
   };
 
   const purchaseProduct = () => {
-    if (totalPrice > 0) {
+    if (updatedPrice > 0) {
       localStorage.setItem("cart", JSON.stringify([]));
       localStorage.setItem("totalPrice", JSON.stringify(0));
       setStoredProductsId([]);
@@ -106,7 +100,7 @@ const SelectedProducts = () => {
           <h1 className="text-2xl font-bold">Cart</h1>
           <div className="flex gap-5 items-center">
             <h1 className="text-xl font-semibold">
-              Total Price : {totalPrice} USD
+              Total Price : {updatedPrice} USD
             </h1>
             <div className="flex gap-5 items-center">
               <div>

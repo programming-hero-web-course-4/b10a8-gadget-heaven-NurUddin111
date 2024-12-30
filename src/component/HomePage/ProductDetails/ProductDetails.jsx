@@ -31,13 +31,13 @@ const ProductDetails = () => {
     totalPrice += price;
     let storedProducts = JSON.parse(localStorage.getItem("cart"));
     if (storedProducts) {
-      if (totalPrice <= 1000) {
+      if (totalPrice < 1000) {
         storedProducts.push(id);
         localStorage.setItem("cart", JSON.stringify(storedProducts));
         localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
         toast.success("Successfully Added To Your Cart!");
       } else {
-        toast.warn("You can't add products in cart worth more than 5000 USD");
+        toast.warn("You can't add products in cart worth more than 1000 USD");
       }
     } else {
       storedProducts = [];
